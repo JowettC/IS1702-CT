@@ -66,3 +66,15 @@ def t307(input_list, group_size):
       res1.append(input_list[i+j])
     res.append(res1)
   return res
+
+def t308(input_list, group_size):
+  totalLength = len(input_list)
+  res = []
+  for i in range(0,totalLength,group_size):
+    res1 =[]
+    for j in range(group_size):
+      if (j + i) >= len(input_list):
+        break;
+      res1.append(input_list[i+j])
+    res.append(res1)
+  return (res)
