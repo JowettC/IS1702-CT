@@ -50,4 +50,19 @@ def t305(x):   # x is a 2D list
     res.append(x[index][0])
   return res
 
-  
+def t306(x1, x2): 
+  res = []
+  for i in range(len(x1)):
+    res.append([x1[i],x2[i]])
+  return res
+
+def t307(input_list, group_size):
+  totalLength = len(input_list)
+  NumberOfArray = totalLength/group_size
+  res = []
+  for i in range(0,totalLength,group_size):
+    res1 =[]
+    for j in range(group_size):
+      res1.append(input_list[i+j])
+    res.append(res1)
+  return res
