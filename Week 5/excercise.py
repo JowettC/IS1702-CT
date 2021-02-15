@@ -29,4 +29,17 @@ def ClassExQ2(x,n):
         return x * ClassExQ2(x,n//2)* ClassExQ2(x,n//2)
     else:
         return ClassExQ2(x,n//2)* ClassExQ2(x,n//2)
-print(ClassExQ2(6,3))
+# print(ClassExQ2(6,3))
+
+def reverse(a):
+    if len(a)== 1:
+        return [a]
+    return [a[-1]] + reverse(a[:-1])
+
+# print(reverse('apple'))
+
+def max_array(a):
+    if len(a) == 1:
+        return a[0]
+    return max(a[0],max_array(a[1:]))
+print(max_array([8,9,12,16,32]))
