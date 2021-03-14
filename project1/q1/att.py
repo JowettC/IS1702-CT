@@ -19,4 +19,5 @@ def group(s):
             s.remove(num)
     return list(leftArr),s
 
-
+s = [-1, 1, 4, 2, 8, 0]
+print(group(s))
