@@ -53,6 +53,8 @@ for i in range(len(vertices)):
         v2 = g.getVertexWithValue(j)
         g.addEdge(v1, v2) 
 
+
+# Graph Traversals
 print("DFS:")
 dfs_traversal(g.getVertexWithValue(vertices[0]))
 

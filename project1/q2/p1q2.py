@@ -1,7 +1,7 @@
-def get_path(x1, y1, x2, y2, ystep =0, xstep = 0):
+def get_path(x1, y1, x2, y2, ystep =0, xstep = 0, count = 0):
     if ystep == 0:
         ystep = abs(x1)
-        print(ystep)
+        # print(ystep)
     if xstep == 0:
         xstep = abs(y1)
     if (x1 == x2):
@@ -23,14 +23,14 @@ def get_path(x1, y1, x2, y2, ystep =0, xstep = 0):
     # TODO: edit this function to make it work. This must be recursive
     if (x1 > x2):
         # move left
-        return get_path(x1 - xstep, y1, x2, y2, ystep,xstep)
-    elif(x1 < x2):
+        return get_path(x1 - xstep, y1, x2, y2, ystep,xstep,count+1)
+    if(x1 < x2):
         # move right
-        return get_path(x1 + xstep, y1, x2, y2,ystep,xstep)
-    elif(y1 > y2):
+        return get_path(x1 + xstep, y1, x2, y2,ystep,xstep,count+1)
+    if(y1 > y2):
         # print('ran')
-        return get_path(x1, y1 - ystep, x2, y2,ystep,xstep)
-    elif(y1 < y2):
+        return get_path(x1, y1 - ystep, x2, y2,ystep,xstep,count+1)
+    if(y1 < y2):
         # print('ran')
         # move up
-        return get_path(x1, y1 + ystep, x2, y2,ystep,xstep)
+        return get_path(x1, y1 + ystep, x2, y2,ystep,xstep,count+1)

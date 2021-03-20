@@ -8,20 +8,21 @@ def comSets(arr, length, leftArr, RightArr, sum1, sum2, pos):
     leftArr.append(arr[pos]) 
     res = comSets(arr, length, leftArr, RightArr,  
                sum1 + arr[pos], sum2, pos + 1)
-    if (res): 
+    # print(res)
+    if res != False: 
         return res 
     leftArr.pop() 
     RightArr.append(arr[pos]) 
     res= comSets(arr, length, leftArr, RightArr, sum1,  
                      sum2 + arr[pos], pos + 1) 
-    if not res:         
+    if res == False:
         RightArr.pop() 
     return res 
 
 def group(s):
     total = sum(s)
     if total % 2 == 1 : 
-        return None,None
+        return False
     length = len(s)
     leftArr = [] 
     RightArr = []
@@ -30,3 +31,7 @@ def group(s):
         return None,None
     else:
         return ans
+
+
+
+print(group([-1, 1, 4, 2, 8, 0]))
