@@ -1,7 +1,10 @@
 def get_path(x1, y1, x2, y2, ystep =0, xstep = 0, count = 0):
     if ystep == 0:
         ystep = abs(x1)
+<<<<<<< Updated upstream
         # print(ystep)
+=======
+>>>>>>> Stashed changes
     if xstep == 0:
         xstep = abs(y1)
     if (x1 == x2):
