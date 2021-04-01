@@ -2,15 +2,6 @@
 
 # from colab week 5
 # Recursive Merge Sort
-def sum(S):
-    if S == None or len(S) == 0 :
-        return 0
-    else:
-        total = 0
-        for num in S:
-            total += num
-        return total
-
 def rmSort(a):
   if len(a) == 1:
     return a 
@@ -32,6 +23,35 @@ def merge(a1, a2):
 			r.append(a2[j]) # pick item from a2
 			j += 1
 	return r
+
+# From last week:
+# Merge Sort
+def mSort(a):
+	gs = 1
+	while gs < len(a):
+		mergeGroups(a, gs)
+		gs *= 2
+	return a
+
+# Helper Method: Level 2
+def mergeGroups(a, gs):
+	i = 0
+	while i < len(a):
+		j = i + 2 * gs
+		a1 = a[i:i+gs]
+		a2 = a[i+gs:i+gs*2]
+		a[i:j] = merge(a1, a2)
+		i = i + 2 * gs
+
+def sum(S):
+    if S == None or len(S) == 0 :
+        return 0
+    else:
+        total = 0
+        for num in S:
+            total += num
+        return total
+
 
 def group(S):
     total = sum(S)
@@ -63,42 +83,45 @@ def group(S):
             elif totalLeft < totalRight:
                 leftArr.append(num)
                 totalLeft += num
+    if totalLeft != totalRight:
+        leftArr1,rightArr1 = findPairOfNumber(rightArr,totalRight,leftArr,totalLeft)
+        return leftArr1,rightArr1
+    else:
+        return leftArr,rightArr
 
-    return leftArr,rightArr
+def findPairOfNumber(leftArr,totalLeft,rightArr,totalRight):
+    differenceFound = False
 
-# def findPairOfNumber(leftArr,totalLeft,rightArr,totalRight):
-#     differenceFound = False
-
-#     if totalLeft > totalRight:
-#         difference = (totalLeft - totalRight)/2
-#         for numLeft in leftArr:
-#             for numRight in rightArr:
-#                 if (numLeft - numRight) == difference:
-#                     leftArr.remove(numLeft)
-#                     rightArr.remove(numRight)
-#                     leftArr.append(numRight)
-#                     rightArr.append(numLeft)
-#                     totalLeft -= difference
-#                     totalRight += difference
-#                     differenceFound = True
-#                     break
-#     else:
-#         difference = (totalRight - totalLeft)/2
-#         for numRight in rightArr:
-#             for numLeft in leftArr:
-#                 if (numRight - numLeft) == difference:
-#                     leftArr.remove(numLeft)
-#                     rightArr.remove(numRight)
-#                     leftArr.append(numRight)
-#                     rightArr.append(numLeft)
-#                     totalLeft += difference
-#                     totalRight -= difference
-#                     differenceFound = True
-#                     break
-#     if differenceFound == False:
-#         return None
-#     else:
-#         return leftArr,totalLeft,rightArr,totalRight
+    if totalLeft > totalRight:
+        difference = (totalLeft - totalRight)/2
+        for numLeft in leftArr:
+            for numRight in rightArr:
+                if (numLeft - numRight) == difference:
+                    leftArr.remove(numLeft)
+                    rightArr.remove(numRight)
+                    leftArr.append(numRight)
+                    rightArr.append(numLeft)
+                    totalLeft -= difference
+                    totalRight += difference
+                    differenceFound = True
+                    break
+    else:
+        difference = (totalRight - totalLeft)/2
+        for numRight in rightArr:
+            for numLeft in leftArr:
+                if (numRight - numLeft) == difference:
+                    leftArr.remove(numLeft)
+                    rightArr.remove(numRight)
+                    leftArr.append(numRight)
+                    rightArr.append(numLeft)
+                    totalLeft += difference
+                    totalRight -= difference
+                    differenceFound = True
+                    break
+    if differenceFound == False:
+        return None,None
+    else:
+        return leftArr,rightArr
 
 # s1 = [-1, 1, 4, 2, 8, 0]
 # test1 = arrayEqualSum(s1)
@@ -151,3 +174,4 @@ sum_s2 = sum(s2)
 print("Your function returned: ")
 print("    s1 = " + str(s1) +", sum(s1) = " + str(sum_s1))
 print("    s2 = " + str(s2) +", sum(s2) = " + str(sum_s2))
+
