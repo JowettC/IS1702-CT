@@ -8,7 +8,6 @@ import copy
 import time
 from GraphLab import *
 
-
 def read_file(file_name):
     input = []
     with open(file_name, "r") as file:
@@ -23,30 +22,44 @@ def read_file(file_name):
     return input
 
 
-def makeGraph(followers):
+def formatGraph(followers):
     g = Graph()
-    # add vertex
     for i in range(len(followers)):
         g.addVertex(Vertex(i))
-    # print(g)
+    # print(g.getVertexWithValue(0))
     for i in range(len(followers)):
-        for j in range(0,len(followers[i])):            
+        for j in range(len(followers[i])):
             v1 = g.getVertexWithValue(i)
             v2 = g.getVertexWithValue(followers[i][j])
-            g.addEdge(v1, v2)
+            g.addEdge(v2,v1)
     return g
 
-
 def get_cycle(followers, s):
-    # TODO: edit this function.
-    g = makeGraph(followers)
-    # print(g)
-    return g.getVertexWithValue(s).getAdjList()
+    stack =[]
+    g = formatGraph(followers)
+    visited =[]
+    # print(g.getVertexWithValue(0).getAdjList())
+    stack.append(Vertex(s))
+    while len(stack) != 0:
+        v = stack[-1]
+        del stack[-1]
+        if v not in visited:
+            visited.append(v)
+        test = g.getVertexWithValue(v).getAdjList()
+        for i in range(len(test)):
+            n = test[len(test)-1 -i]
+            if n[0] not in visited:
+                print(n[0])
+                print(n[0])
+                stack.append(n[0])
+                # use dfs function
+        
+    return None
 
 
 
-file_name = "case1.csv"
-s = 2
+file_name = "case1a.csv"
+s = 0
 followers = read_file(file_name)
 followers_clone = copy.deepcopy(followers)
-print(get_cycle(followers,5))
+print(get_cycle(followers,s))
