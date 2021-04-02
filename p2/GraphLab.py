@@ -11,8 +11,7 @@ class Graph:
     # checks whether the graph is empty
     def isEmpty(self):
         return len(self.vertices) == 0		
-
-    # add a vertex to the graph
+    
     def addVertex(self, vertex, x = None, y = None):
         if not isinstance(vertex, Vertex):
             vertex = Vertex(vertex)
@@ -37,7 +36,7 @@ class Graph:
                 return True
         return False
    
-    # add an edge to the graph
+    
     def addEdge(self, v1, v2, weight = 1):
         if not isinstance(v1, Vertex) or not isinstance(v2, Vertex):
             raise TypeError('values must be a Vertex!')
@@ -210,14 +209,13 @@ def shortest_path(graph, initial, target):
         next = paths[next]
         path.append(next)
     return visited[target], path[::-1]
-       
-# dfs 
+        
 def dfs_traversal(v):
     q = Queue()
     g = Graph()
     visited = []
     _dfs(v, visited, g, q)
-
+    
 def _dfs(v, visited, g, q):
     setVisitedDfs(v, visited, g, q)
     for u in v.adjList:
@@ -230,8 +228,7 @@ def setVisitedDfs(v, visited, g, q):
         print(v)
         q.put(v.value)
         _dfs(v, visited, g, q)
-
-# bfs        
+        
 def bfs_traversal(v):
     q = Queue()
     g = Graph()
@@ -250,8 +247,7 @@ def setVisitedBfs(v, visited, queue, g, q):
         visited.append(v)
         q.put(v.value)
         queue.append(v)
-
-# topo sort   
+        
 def topsort(graph):
     s = []
     visited = []
@@ -279,8 +275,7 @@ def retrieveVertex(g, vertex):
         if e == vertex:
             return e 
     return None
-
-# greedy algo #1 
+    
 def greedy1(g, initial):
     q = Queue()
     graph = copy.deepcopy(g)
@@ -303,8 +298,7 @@ def greedy1(g, initial):
             break
     path.append(initial)
     return dist, path
-
-# greedy algo #2     
+    
 def greedy2(g):
     q = Queue()
     graph = copy.deepcopy(g)
@@ -436,8 +430,7 @@ def greedy2(g):
         # put vertice in queue for visualization
                 
     return total_dist, path
-
-# 2-opt
+    
 def two_opt(arr, g):
     q = Queue()
     q.put(arr)
