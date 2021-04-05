@@ -37,24 +37,34 @@ def formatGraph(followers):
 def get_cycle(followers, s):
     stack =[]
     g = formatGraph(followers)
-    visited =[]
-    # print(g.getVertexWithValue(0).getAdjList())
-    stack.append(Vertex(s))
-    while len(stack) != 0:
-        v = stack[-1]
-        del stack[-1]
+    # for i in range(11):
+    #     print(g.getVertexWithValue(i).getAdjList())
+    stack = Stack()
+    cycles =[]
+    visited = []
+    cycle = []
+    for i in range(len(followers)):
+        graph[i] = followers[i]
+    # print (graph)
+    stack.push(s)
+    while stack.count() != 0:
+        havedepth = False
+        v = stack.pop()
+        # print(v)
         if v not in visited:
             visited.append(v)
-        test = g.getVertexWithValue(v).getAdjList()
-        for i in range(len(test)):
-            n = test[len(test)-1 -i]
-            if n[0] not in visited:
-                print(n[0])
-                print(n[0])
-                stack.append(n[0])
-                # use dfs function
-        
-    return None
+            cycle.append(v)
+            
+            if s in graph[v]:
+                cycles.append(copyArr(cycle))
+            # print(v)
+        for i in range(len(graph[v])):
+            n = graph[v][len(graph[v])-1-i]
+            if n not in visited:
+                havedepth = True
+                stack.push(n)
+        if havedepth == False:
+            del cycle[-1]
 
 
 
@@ -63,3 +73,4 @@ s = 0
 followers = read_file(file_name)
 followers_clone = copy.deepcopy(followers)
 print(get_cycle(followers,s))
+print(type(get_cycle(followers,s)[0]))

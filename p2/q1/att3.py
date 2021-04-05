@@ -1,3 +1,19 @@
+import copy
+import time
+
+def read_file(file_name):
+    input = []
+    with open(file_name, "r") as file:
+        for line in file:
+            line = line.rstrip("\n")
+            current_list = line.split(",")
+            # 1st element is the index. assumption: the index is always in sequence: 0, 1, 2,.... etc
+            index = int(current_list.pop(0))
+            # convert all elements from strings into ints
+            current_list = [int(i) for i in current_list]
+            input.append(current_list)        # insert into list
+    return input
+
 def convertToGraph(arr):
     g = {}
     for i in range(len(arr)):
@@ -49,7 +65,17 @@ def get_cycle(followers, s):
         if havedepth == False:
             del visited[-1]
     res = findLargestArr(cycles)
+    return cycles
     if len(res) == 0:
         return []
     else:
         return res + [s]
+
+
+
+# file_name = "case1a.csv"
+s = 6
+# followers = read_file(file_name)
+a = [[5, 8, 10], [2, 6], [1, 3], [1, 5], [2, 5], [4, 6, 9], [1, 3, 9], [6], [7, 10], [0, 6, 8, 10], []]
+# followers_clone = copy.deepcopy(followers)
+print(get_cycle(a,s))

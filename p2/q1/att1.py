@@ -44,10 +44,10 @@ def validateCycle(graph,arr):
     removetimes=0
     print(arr)
     for i in range(0,len(arr)-1):
-        print(arr[i-removetimes+1])
-        print(graph[arr[i-removetimes]])
+        # print(arr[i-removetimes+1])
+        # print(graph[arr[i-removetimes]])
         if arr[i-removetimes+1] not in graph[arr[i-removetimes]]:
-            print()
+            # print()
             # print("run")
             # del arr[i-removetimes]
             # removetimes += 1
