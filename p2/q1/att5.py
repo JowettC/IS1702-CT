@@ -46,7 +46,11 @@ def get_cycle(followers,s):
     visited =[]
     cycles = []
     stack.append(s)
+    count = 0
     while len(stack) != 0:
+        count += 1
+        if count > 10000:
+            break
         hasDepth = False
         v = stack[-1]
         del stack[-1]
@@ -54,7 +58,6 @@ def get_cycle(followers,s):
             visited.append(v)
             if s in g[v]:
                 cycles.append(copyArr(visited))
-                print(cycles)
         for i in range(len(g[v])):
             n = g[v][len(g[v])-1-i]
             if n not in visited:
@@ -62,8 +65,8 @@ def get_cycle(followers,s):
                 stack.append(n)
         if hasDepth == False:
             del visited[-1]
-    return findLongestArr(cycles) + [s]
-file_name = "case2.csv"
+    return findLongestArr(cycles)[0] + [s]
+file_name = "case1.csv"
 s = 0
 followers = read_file(file_name)
 followers_clone = copy.deepcopy(followers)

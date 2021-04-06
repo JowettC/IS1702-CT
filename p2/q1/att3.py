@@ -40,7 +40,13 @@ def findLargestArr(arr):
             max = len(arr[i])
             res = arr[i]
     return res
-
+def validate(g,arr):
+    res = [arr[0]]
+    for i in range(len(arr)-1,0):
+        if arr[i] not in g[arr[i-1]]:
+            continue
+        else:
+            res.append(arr[i])
 def get_cycle(followers, s):
     g = convertToGraph(followers)
     stack = []
