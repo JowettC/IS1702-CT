@@ -1,3 +1,6 @@
+def is_balanced(root):
+    if 
+
 def depth(root):
   if root == None:
     return 0

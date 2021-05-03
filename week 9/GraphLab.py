@@ -137,13 +137,13 @@ class TSPGraph(UndirectedGraph):
                 self.addEdge(v1, v2)
             
         
-class Vertex:
+class Vertex: print(Vertex.getAdjList())
     
     def __init__(self, value, x = None, y = None):
         self.value = value 
         self.adjList = []
         self.setCoords(x, y)
-		
+		#  getter
     def getAdjList(self):
         return self.adjList
 
