@@ -1,4 +1,20 @@
 from collections import defaultdict
+import copy
+import time
+
+
+def read_file(file_name):
+    input = []
+    with open(file_name, "r") as file:
+        for line in file:
+            line = line.rstrip("\n")
+            current_list = line.split(",")
+            # 1st element is the index. assumption: the index is always in sequence: 0, 1, 2,.... etc
+            index = int(current_list.pop(0))
+            # convert all elements from strings into ints
+            current_list = [int(i) for i in current_list]
+            input.append(current_list)        # insert into list
+    return input
 
 def find_cliques(graph):
   p = set(graph.keys())
@@ -68,19 +84,14 @@ def get_clique(followers):
         if i not in g[g[i][j]]:
           g[g[i][j]].append(i)
       
-<<<<<<< Updated upstream
-    print(g)
-    allCycles = find_cliques(g)
-    allCycles.sort(key=len, reverse= True)
-    res = list(allCycles[0])
-    return res
-  
-followers_1a = [[5, 8, 10], [2, 6], [1, 3], [1, 5], [2, 5], [4, 6, 9], [1, 3, 9], [6], [7, 10], [0, 6, 8, 10], []]
-print(get_clique(followers_1a))
-=======
     # print(g)
     allCycles = find_cliques(g)
     allCycles.sort(key=len, reverse= True)
     res = list(allCycles[0])
     return res
->>>>>>> Stashed changes
+
+file_name = "case1a.csv"
+s = 2
+followers = read_file(file_name)
+followers_clone = copy.deepcopy(followers)
+print(get_clique(followers))

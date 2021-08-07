@@ -1,7 +1,10 @@
 def dfs(graph, start, end):
     fringe = [(start, [])]
     count = 0
+<<<<<<< Updated upstream
     print(fringe)
+=======
+>>>>>>> Stashed changes
     while fringe:
         count += 1
         if count > 100000:
@@ -19,7 +22,11 @@ def get_cycle(followers,s):
     graph ={}
     for i in range(len(followers)):
         graph[i] = followers[i]
+<<<<<<< Updated upstream
     
+=======
+    print(graph)
+>>>>>>> Stashed changes
     cycles = [[s]+path for path in dfs(graph, s, s)]
     if len(cycles) == 0:
         return []

@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 def pt (n,k):
     if k == 1:
         return 1
@@ -82,3 +83,70 @@ def f14(x,n,n2 = 0, fact = 1):
         return x**n2/(fact*n2) +f14(x,n,n2+1,fact * n2)
 # print(f14(2,4))
 # O(n) complexity
+=======
+from LinearDSLab import Stack, Queue
+
+def factorial(n):
+    s = Stack()
+    total = n
+    s.push(n)
+    while s.count() > 0:
+        v = s.pop() - 1
+        total *= v
+        if v > 1:
+            s.push(v)
+    return total
+
+# print(factorial(6))
+
+def mystery(x):
+    res =""
+    s = Stack()
+    s.push(x)
+    while x > 1:
+        s.push(x//2)
+        x = x //2
+    while s.count()>0:
+        res += str(s.pop()%2)
+    return res
+# print(mystery(6))
+
+def is_palindrome(word):
+    q1 = Queue()
+    q2 = Queue()
+    for i in range(0,len(word)):
+        q1.enqueue(word[i])
+        q2.enqueue(word[len(word)-1-i])
+    for i in range(len(word)):
+        if q1.dequeue() != q2.dequeue():
+            return False
+    return True
+# print(is_palindrome("12321"))
+def is_palindrome2(word):
+    s = Stack()
+    for item in word:
+        s.push(item)
+    for i in range(len(word)):
+        if s.pop() != word[i]:
+            return False
+    return True
+# print(is_palindrome2("12321"))
+
+def dijkstra(a,b):
+    s = Stack()
+    s.push(a)
+    s.push(b)
+    while s.count() > 1:
+        b = s.pop()
+        a = s.pop()
+        if a > b:
+            s.push(a-b)
+            s.push(b)
+        elif b > a:
+            s.push(a)
+            s.push(b-a)
+        else:
+            return a
+# print(dijkstra(24,18))
+        
+>>>>>>> Stashed changes

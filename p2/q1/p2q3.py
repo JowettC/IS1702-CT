@@ -1,4 +1,27 @@
+# EXTRACT THIS CODE & SUBMIT AS p2q3.py TO RED!!!
+# Filename: p2q3.py
+# Team ID: G4_T24
+
+# Except import statements, all other statements should only be in functions.
+# import GraphLab  # <-- uncomment if you want to use GraphLab
+
 from collections import defaultdict
+import copy
+import time
+
+
+def read_file(file_name):
+    input = []
+    with open(file_name, "r") as file:
+        for line in file:
+            line = line.rstrip("\n")
+            current_list = line.split(",")
+            # 1st element is the index. assumption: the index is always in sequence: 0, 1, 2,.... etc
+            index = int(current_list.pop(0))
+            # convert all elements from strings into ints
+            current_list = [int(i) for i in current_list]
+            input.append(current_list)        # insert into list
+    return input
 
 def find_cliques(graph):
   p = set(graph.keys())
@@ -7,7 +30,6 @@ def find_cliques(graph):
   cliques = []
   for v in degeneracy_ordering(graph):
     neighs = graph[v]
-    # print(neighs)
     find_cliques_pivot(graph, r.union([v]), p.intersection(neighs), x.intersection(neighs), cliques)
     p.remove(v)
     x.add(v)
@@ -59,28 +81,29 @@ def degeneracy_ordering(graph):
   ordering.reverse()
   return ordering
 
+
+
 def get_clique(followers):
-    g = {}
-    for i in range(len(followers)):
-        g[i] = followers[i]
-    for i in range(len(followers)):
-      for j in range(len(g[i])):
-        if i not in g[g[i][j]]:
-          g[g[i][j]].append(i)
-      
-<<<<<<< Updated upstream
-    print(g)
-    allCycles = find_cliques(g)
-    allCycles.sort(key=len, reverse= True)
-    res = list(allCycles[0])
-    return res
+  # TODO: edit this function.
+  size = len(followers)
+  graph = dict()
+  for i in range(size):
+    if i not in graph:
+      graph[i] = []
+    for elements in followers[i]:
+      if elements not in graph:
+        graph[elements] = [i]
+      else:
+        graph[elements].append(i)  
+      graph[i].append(elements)
+  clique = find_cliques(graph)
+  print(graph)
+  print(clique)
+  clique.sort(key=len)
+  return (list(clique[-1]))
   
-followers_1a = [[5, 8, 10], [2, 6], [1, 3], [1, 5], [2, 5], [4, 6, 9], [1, 3, 9], [6], [7, 10], [0, 6, 8, 10], []]
-print(get_clique(followers_1a))
-=======
-    # print(g)
-    allCycles = find_cliques(g)
-    allCycles.sort(key=len, reverse= True)
-    res = list(allCycles[0])
-    return res
->>>>>>> Stashed changes
+file_name = "case1a.csv"
+s = 2
+followers = read_file(file_name)
+followers_clone = copy.deepcopy(followers)
+print(get_clique(followers))
