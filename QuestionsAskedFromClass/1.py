@@ -1,4 +1,4 @@
-
+#  how to make this function recursive
 def mystery(n):
     if n == 0:
         return 1
@@ -15,7 +15,7 @@ def mystery(n):
         y = z
         z = w
     return z
-# recursive
+# recursive ans
 def mysteryr(n,x=1,y=3,z=5):
     if n == 0:
         return 1
